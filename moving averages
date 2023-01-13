@@ -1,0 +1,10 @@
+import pandas as pd
+
+# Load stock data into a Pandas dataframe
+df = pd.read_csv('stock_data.csv')
+
+# Calculate 20-day moving average of closing price
+df['20d_ma'] = df['closing_price'].rolling(window=20).mean()
+
+# Print the dataframe
+print(df)
