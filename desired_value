@@ -1,0 +1,23 @@
+import pandas as pd
+from datetime import datetime, timedelta
+
+# Load stock data into a Pandas dataframe
+df = pd.read_csv('stock_data.csv')
+
+# Convert the date column to datetime format
+df['date'] = pd.to_datetime(df['date'])
+
+# Get the current date and time
+now = datetime.now()
+
+# Get the date and time 24 hours ago
+ago = now - timedelta(hours=24)
+
+# Filter the dataframe to only include data from the last 24 hours
+df = df[df['date'] >= ago]
+
+# Check if the stock reached the desired price
+if df['closing_price'].max() >= desired_price:
+    print("The stock reached the desired price within the last 24 hours.")
+else:
+    print("The stock did not reach the desired price within the last 24 hours.")
